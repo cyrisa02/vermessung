@@ -41,6 +41,9 @@ class Client
     #[ORM\Column(nullable: true)]
     private ?bool $isValid = null;
 
+    #[ORM\Column(length: 190, nullable: true)]
+    private ?string $phone = null;
+
     /**
  	*This constructor is for the date
  	*/
@@ -160,6 +163,18 @@ class Client
     public function setIsValid(?bool $isValid): self
     {
         $this->isValid = $isValid;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }
