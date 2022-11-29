@@ -35,6 +35,12 @@ class Measure
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
+    #[ORM\ManyToOne(inversedBy: 'measures')]
+    private ?User $user = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Client $client = null;
+
     /**
  	*This constructor is for the date
  	*/
@@ -130,6 +136,30 @@ class Measure
     public function setCreatedAt(\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }
