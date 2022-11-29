@@ -23,7 +23,14 @@
 				</tr>
 				<tr>
 					<th>Bild</th>
-					<td>{{ user.picture }}</td>
+					<td>
+						{% if user.picture is defined %}
+							<img src="{{ asset('uploads/') }}{{ user.picture }}" alt="{{ user.lastname }}" style="max-width: 7rem; height: auto; border-radius: 50%;">
+						{% else %}
+							<p>Kein Bild</p>
+						{% endif %}
+					</td>
+
 				</tr>
 				<tr>
 					<th>Geselschaft</th>
