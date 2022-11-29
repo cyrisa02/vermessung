@@ -45,6 +45,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $isVerified = null;
 
+
+    /**
+ 	*This constructor is for the date
+ 	*/
+ 	
+ 	public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();      
+        
+    }
+
     public function getId(): ?int
     {
         return $this->id;

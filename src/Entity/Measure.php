@@ -35,6 +35,16 @@ class Measure
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
+    /**
+ 	*This constructor is for the date
+ 	*/
+ 	
+ 	public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();      
+        
+    }
+
     public function getId(): ?int
     {
         return $this->id;
