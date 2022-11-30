@@ -16,6 +16,8 @@ class QuotationController extends AbstractController
     #[Route('/', name: 'app_quotation_index', methods: ['GET'])]
     public function index(QuotationRepository $quotationRepository): Response
     {
+      
+
         return $this->render('pages/quotation/index.html.twig', [
             'quotations' => $quotationRepository->findAll(),
         ]);
@@ -49,7 +51,7 @@ class QuotationController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/andern', name: 'app_quotation_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/senden', name: 'app_quotation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Quotation $quotation, QuotationRepository $quotationRepository): Response
     {
         $form = $this->createForm(QuotationType::class, $quotation);
@@ -57,9 +59,9 @@ class QuotationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $quotationRepository->save($quotation, true);
-            $this->addFlash('success', 'Die Änderung wurde erfolgreich abgeschlossen');
+            $this->addFlash('success', 'Ihre E-Mail wurde an dem Lieferant gesendet.');
 
-            return $this->redirectToRoute('app_quotation_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_yourmeasure_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pages/quotation/edit.html.twig', [

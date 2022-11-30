@@ -17,7 +17,10 @@ class Quotation
     
 
     #[ORM\Column(nullable: true)]
-    private ?bool $isSend = null;    
+    private ?bool $isSend = null;
+
+    #[ORM\Column(length: 190, nullable: true)]
+    private ?string $deadline = null;    
 
     public function getId(): ?int
     {
@@ -34,6 +37,18 @@ class Quotation
     public function setIsSend(?bool $isSend): self
     {
         $this->isSend = $isSend;
+
+        return $this;
+    }
+
+    public function getDeadline(): ?string
+    {
+        return $this->deadline;
+    }
+
+    public function setDeadline(?string $deadline): self
+    {
+        $this->deadline = $deadline;
 
         return $this;
     }

@@ -43,7 +43,8 @@ class MeasureController extends AbstractController
             $quotation= new Quotation();
 
             // Coàntrat est un champ texte à remplir gràace au formulaire
-            $quotation->setIsSend(0);
+            $quotation->setIsSend(0)
+                        ->setDeadline('Geben Sie ein Liefertermin, bitte.');
             // à 0 parce que je veux qu'il soit à false donc 0
             //        
             //vient chercher la clé étrangère  ne pas oublier de persister       
@@ -93,7 +94,7 @@ class MeasureController extends AbstractController
         }
             $measureRepository->save($measure, true);
             $this->addFlash('success', ' Die Änderung wurde erfolgreich abgeschlossen');
-            return $this->redirectToRoute('app_measure_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_yourmeasure_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pages/measure/edit.html.twig', [

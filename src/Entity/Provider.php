@@ -43,6 +43,9 @@ class Provider
     #[ORM\Column(length: 190, nullable: true)]
     private ?string $phone = null;
 
+    #[ORM\OneToMany(mappedBy: 'providers', targetEntity: Measure::class)]
+    private Collection $measures;
+
     
     public function __toString()
      {
@@ -51,7 +54,7 @@ class Provider
 
     public function __construct()
     {
-       
+        $this->measures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +166,36 @@ class Provider
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Measure>
+     */
+    public function getMeasures(): Collection
+    {
+        return $this->measures;
+    }
+
+    public function addMeasure(Measure $measure): self
+    {
+        if (!$this->measures->contains($measure)) {
+            $this->measures->add($measure);
+            $measure->setProviders($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMeasure(Measure $measure): self
+    {
+        if ($this->measures->removeElement($measure)) {
+            // set the owning side to null (unless already changed)
+            if ($measure->getProviders() === $this) {
+                $measure->setProviders(null);
+            }
+        }
 
         return $this;
     }

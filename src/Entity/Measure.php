@@ -68,8 +68,10 @@ class Measure
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Quotation $quotation = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Provider $provider = null;
+    #[ORM\ManyToOne(inversedBy: 'measures')]
+    private ?Provider $providers = null;
+
+    
 
     
     public function __toString()
@@ -299,17 +301,19 @@ class Measure
         return $this;
     }
 
-    public function getProvider(): ?Provider
+    public function getProviders(): ?Provider
     {
-        return $this->provider;
+        return $this->providers;
     }
 
-    public function setProvider(?Provider $provider): self
+    public function setProviders(?Provider $providers): self
     {
-        $this->provider = $provider;
+        $this->providers = $providers;
 
         return $this;
     }
+
+    
 
     
 }

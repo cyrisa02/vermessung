@@ -160,16 +160,15 @@ class MeasureType extends AbstractType
                 ],
                 
             ])
-            //->add('provider', EntityType::class, [
-            //    'required' => false,
-            //    'label' => 'Lieferant',
-            //    'class' => Provider::class,
-            //    'attr' => [
-            //        'class' => 'select2 mt-4 ms-2'
-            //    ]
-            //])
-            //->add('provider')
-            
+            ->add('providers', EntityType::class, [
+                'required' => false,
+                'label' => 'Lieferant',
+                'class' => Provider::class,
+                'attr' => [
+                    'class' => 'select2 mt-4 ms-2'
+                ]
+            ])
+                      
            
             ->add('floorname', TextType::class, [
                 'required' => false,

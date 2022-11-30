@@ -18,7 +18,7 @@
 			<tbody>
 				{% for quotation in quotations %}
 					<tr>
-						<td>{{ quotation.deadline ? quotation.deadline|date('d-m-Y') : '' }}</td>
+						<td>{{ quotation.deadline  }}</td>
 						<td>{{ quotation.isSend ? 'Ja' : 'Nein' }}</td>
 						<td>
 							<a class='mt-4 ' href="{{ path('app_quotation_show', {'id': quotation.id}) }}">
