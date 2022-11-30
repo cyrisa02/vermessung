@@ -92,7 +92,8 @@ class MeasureType extends AbstractType
                     'class' => 'form-label  mt-4'
                 ],
                 
-            ])->add('place', TextType::class, [
+            ])
+            ->add('place', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'minlenght' => '2',
