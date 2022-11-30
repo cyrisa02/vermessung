@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('app_measure_delete', {'id': measure.id}) }}" onsubmit="return confirm('Wollen Sie die Vermessung löschen?');">
+	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ measure.id) }}">
+	<button class="btn btn-danger btn-lg mt-4">Löschen</button>
+
+</form>

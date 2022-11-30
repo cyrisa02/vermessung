@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vermessung
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Vermessung</h1>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Bezeichnung</th>
+					<td>{{ measure.title }}</td>
+				</tr>
+				<tr>
+					<th>Beschreibung</th>
+					<td>{{ measure.description }}</td>
+				</tr>
+				<tr>
+					<th>Bild</th>
+					<td>{{ measure.picture }}</td>
+				</tr>
+				<tr>
+					<th>Ort</th>
+					<td>{{ measure.place }}</td>
+				</tr>
+				<tr>
+					<th>Breite (m)</th>
+					<td>{{ measure.width /100}}
+						m</td>
+				</tr>
+				<tr>
+					<th>Länge (m)</th>
+					<td>{{ measure.length /100}}
+						m</td>
+				</tr>
+				<tr>
+					<th>Erstellung</th>
+					<td>{{ measure.createdAt ? measure.createdAt|date('d-m-Y') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Laminat</th>
+					<td>{{ measure.floorname }}</td>
+				</tr>
+				<tr>
+					<th>ArtikelNr</th>
+					<td>{{ measure.floornr }}</td>
+				</tr>
+				<tr>
+					<th>Menge (m²)</th>
+
+					<td>{{ (measure.width * measure.length *1.2 /10000) | round }}
+						m²</td>
+
+				</tr>
+
+			</tbody>
+		</table>
+
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_measure_index') }}">Zurück</a>
+
+
+		<a class="btn btn-primary btn-lg mt-4" href="{{ path('app_measure_edit', {'id': measure.id}) }}">Ändern</a>
+
+
+		{{ include('pages/measure/_delete_form.html.twig') }}</div>
+
+{% endblock %}
