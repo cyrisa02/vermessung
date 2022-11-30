@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class MeasureType extends AbstractType
@@ -38,6 +39,83 @@ class MeasureType extends AbstractType
                     'class' => 'form-label  mt-4 '
                 ]
             ])
+            ->add('lastname', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlenght' => '2',
+                    'maxlenght' => '190',
+                ],
+                'label' => 'Kundenname',
+                'label_attr' => [
+                    'class' => 'form-label  mt-4'
+                ],
+                
+            ])
+            ->add('civility', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlenght' => '2',
+                    'maxlenght' => '190',
+                ],
+                'label' => 'Geschlecht',
+                'label_attr' => [
+                    'class' => 'form-label  mt-4'
+                ],
+                
+            ])
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'E-mail'
+            ])             
+            ->add('address', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlenght' => '2',
+                    'maxlenght' => '190',
+                ],
+                'label' => 'Anschrift',
+                'label_attr' => [
+                    'class' => 'form-label  mt-4'
+                ],
+                
+            ])
+            ->add('zipcode', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlenght' => '2',
+                    'maxlenght' => '190',
+                ],
+                'label' => 'Postleitzahl',
+                'label_attr' => [
+                    'class' => 'form-label  mt-4'
+                ],
+                
+            ])->add('place', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlenght' => '2',
+                    'maxlenght' => '190',
+                ],
+                'label' => 'Ort',
+                'label_attr' => [
+                    'class' => 'form-label  mt-4'
+                ],
+                
+            ])
+            ->add('phone', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control mb-4',
+                    'minlenght' => '2',
+                    'maxlenght' => '190',
+                ],
+                'label' => 'Telefon',
+                'label_attr' => [
+                    'class' => 'form-label  mt-4'
+                ],
+                
+            ])
             ->add('picture', FileType::class, [
                 'mapped' => false,
                 'required' => false,
@@ -54,18 +132,7 @@ class MeasureType extends AbstractType
                 ],
                 
             ])
-            ->add('place', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                    'minlenght' => '2',
-                    'maxlenght' => '190',
-                ],
-                'label' => 'Ort',
-                'label_attr' => [
-                    'class' => 'form-label  mt-4'
-                ],
-                
-            ])
+            
             ->add('width', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
@@ -118,7 +185,7 @@ class MeasureType extends AbstractType
                 
             ])
             //->add('user')
-            ->add('client')
+            //->add('client')
         ;
     }
 

@@ -16,6 +16,7 @@
 					<th>Bezeichnung</th>
 					<th>Beschreibung</th>
 					<th>Ort</th>
+					<th>Kunden</th>
 					<th>Breite (m)</th>
 					<th>Länge (m)</th>
 					<th>Erstellung</th>
@@ -31,6 +32,7 @@
 						<td>{{ measure.title }}</td>
 						<td>{{ measure.description | u.truncate(10) }}...</td>
 						<td>{{ measure.place }}</td>
+						<td>{{ measure.lastname }}</td>
 						<td>{{ measure.width /100 }}
 							m</td>
 						<td>{{ measure.length /100 }}
