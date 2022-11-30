@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kunden erstellen
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Kunden erstellen</h1>
+
+		{{ include('client/_form.html.twig') }}
+
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_client_index') }}">Zurück</a>
+
+	</div>
+
+{% endblock %}
