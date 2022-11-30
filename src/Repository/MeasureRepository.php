@@ -39,6 +39,21 @@ class MeasureRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+    * @return Measure [] Returns an array of Measure objects
+    */
+   public function findByUser($user): array
+   {
+       return $this->createQueryBuilder('m')
+           ->join('m.user', 'u') 
+           ->where('u = :val')           
+           ->setParameter('val', $user)
+           ->orderBy('m.id', 'ASC')
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+
 //    /**
 //     * @return Measure[] Returns an array of Measure objects
 //     */

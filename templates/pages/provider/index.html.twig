@@ -1,50 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Vermessung Liste
+{% block title %}Lieferant Liste
 {% endblock %}
 
 {% block body %}
 	<div class="container mt-4">
-		<h1>Vermessung Liste</h1>
-		<p>Achtung: die Mengen werden mit einem Sicherheitsfaktor von 20 % berechnet.</p>
-
+		<h1>Lieferant Liste</h1>
 
 		<table class="table">
 			<thead>
 				<tr>
-
-					<th>Bezeichnung</th>
+					<th>Geselschaft</th>
+					<th>Name</th>
+					<th>Vorname</th>
 					<th>Beschreibung</th>
-					<th>Ort</th>
-					<th>Kunden</th>
-					<th>Breite (m)</th>
-					<th>Länge (m)</th>
-					<th>Erstellung</th>
-					<th>Laminat</th>
-					<th>ArtikelNr</th>
-					<th>Menge (m²)</th>
-					<th>Aktion</th>
+					<th>Email</th>
+					<th>Anschrift</th>
+					<th>Postleitzahl</th>
+					<th>Stadt</th>
+					<th>Telefon</th>
+					<th>Ackion</th>
 				</tr>
 			</thead>
 			<tbody>
-				{% for measure in measures %}
+				{% for provider in providers %}
 					<tr>
-						<td>{{ measure.title }}</td>
-						<td>{{ measure.description | u.truncate(10) }}...</td>
-						<td>{{ measure.place }}</td>
-						<td>{{ measure.lastname }}</td>
-						<td>{{ measure.width /100 }}
-							m</td>
-						<td>{{ measure.length /100 }}
-							m</td>
-						<td>{{ measure.createdAt ? measure.createdAt|date('d-m-Y') : '' }}</td>
-						<td>{{ measure.floorname }}</td>
-						<td>{{ measure.floornr }}</td>
-						<td>{{ (measure.width * measure.length *1.2 /10000) | round }}
-							m²</td>
-
+						<td>{{ provider.company }}</td>
+						<td>{{ provider.lastname }}</td>
+						<td>{{ provider.firstname }}</td>
+						<td>{{ provider.description | u.truncate(10) }}...</td>
+						<td>{{ provider.email }}</td>
+						<td>{{ provider.address }}</td>
+						<td>{{ provider.zipcode }}</td>
+						<td>{{ provider.city }}</td>
+						<td>{{ provider.phone }}</td>
 						<td>
-							<a class=' mt-4' href="{{ path('app_measure_show', {'id': measure.id}) }}">
+							<a class=' mt-4' href="{{ path('app_provider_show', {'id': provider.id}) }}">
 
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewbox="0 0 16 16">
 									<path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
@@ -52,7 +43,7 @@
 								</svg>
 							</a>
 
-							<a class='mt-4 ms-4' href="{{ path('app_measure_edit', {'id': measure.id}) }}">
+							<a class='mt-4 ms-4' href="{{ path('app_provider_edit', {'id': provider.id}) }}">
 
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewbox="0 0 16 16">
 									<path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
@@ -63,13 +54,13 @@
 					</tr>
 				{% else %}
 					<tr>
-						<td colspan="11">Keine Vermessung</td>
+						<td colspan="11">Kein Lieferant</td>
 					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 
-		<a href="{{ path('app_measure_new') }}">Vermessung erstellen</a>
+		<a href="{{ path('app_provider_new') }}">Lieferant erstellen</a>
 	</div>
 
 {% endblock %}

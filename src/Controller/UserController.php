@@ -30,7 +30,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->save($user, true);
-
+            $this->addFlash('success', ' Die Änderung wurde erfolgreich abgeschlossen');
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 

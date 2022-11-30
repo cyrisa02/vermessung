@@ -29,8 +29,26 @@
 
 				</tr>
 				<tr>
-					<th>Ort</th>
-					<td>{{ measure.place }}</td>
+					<th>Kundenname</th>
+					<td>{{ measure.civility }}
+						{{ measure.lastname }}</td>
+				</tr>
+				<tr>
+					<th>E-mail</th>
+					<td>{{ measure.email }}</td>
+				</tr>
+				<tr>
+					<th>Anschrift</th>
+					<td>{{ measure.address }},
+						{{ measure.zipcode }},
+						<strong>{{ measure.place }}</strong>
+					</td>
+
+
+				</tr>
+				<tr>
+					<th>Telefon</th>
+					<td>{{ measure.phone }}</td>
 				</tr>
 				<tr>
 					<th>Breite (m)</th>

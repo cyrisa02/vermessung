@@ -38,14 +38,30 @@ class Measure
     #[ORM\ManyToOne(inversedBy: 'measures')]
     private ?User $user = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Client $client = null;
-
+    
     #[ORM\Column(length: 190, nullable: true)]
     private ?string $floorname = null;
 
     #[ORM\Column(length: 190, nullable: true)]
     private ?string $floornr = null;
+
+    #[ORM\Column(length: 190)]
+    private ?string $lastname = null;
+
+    #[ORM\Column(length: 190)]
+    private ?string $civility = null;
+
+    #[ORM\Column(length: 190, nullable: true)]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 190, nullable: true)]
+    private ?string $address = null;
+
+    #[ORM\Column(length: 190, nullable: true)]
+    private ?string $zipcode = null;
+
+    #[ORM\Column(length: 190, nullable: true)]
+    private ?string $phone = null;
 
     /**
  	*This constructor is for the date
@@ -158,18 +174,7 @@ class Measure
         return $this;
     }
 
-    public function getClient(): ?Client
-    {
-        return $this->client;
-    }
-
-    public function setClient(?Client $client): self
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
+    
     public function getFloorname(): ?string
     {
         return $this->floorname;
@@ -190,6 +195,78 @@ class Measure
     public function setFloornr(?string $floornr): self
     {
         $this->floornr = $floornr;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getCivility(): ?string
+    {
+        return $this->civility;
+    }
+
+    public function setCivility(string $civility): self
+    {
+        $this->civility = $civility;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getZipcode(): ?string
+    {
+        return $this->zipcode;
+    }
+
+    public function setZipcode(?string $zipcode): self
+    {
+        $this->zipcode = $zipcode;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }

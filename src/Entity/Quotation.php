@@ -20,6 +20,9 @@ class Quotation
     #[ORM\Column(nullable: true)]
     private ?bool $isSend = null;
 
+    #[ORM\ManyToOne(inversedBy: 'quotations')]
+    private ?Provider $provider = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +48,18 @@ class Quotation
     public function setIsSend(?bool $isSend): self
     {
         $this->isSend = $isSend;
+
+        return $this;
+    }
+
+    public function getProvider(): ?Provider
+    {
+        return $this->provider;
+    }
+
+    public function setProvider(?Provider $provider): self
+    {
+        $this->provider = $provider;
 
         return $this;
     }
