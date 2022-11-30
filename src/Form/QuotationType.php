@@ -13,8 +13,9 @@ class QuotationType extends AbstractType
     {
         $builder
             ->add('deadline')
-            ->add('isSend')
-            ->add('provider')
+            //->add('isSend')
+            //->add('provider')
+            //->add('measure')
         ;
     }
 

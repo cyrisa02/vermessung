@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Measure;
+use App\Entity\Provider;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -158,7 +160,17 @@ class MeasureType extends AbstractType
                 ],
                 
             ])
+            //->add('provider', EntityType::class, [
+            //    'required' => false,
+            //    'label' => 'Lieferant',
+            //    'class' => Provider::class,
+            //    'attr' => [
+            //        'class' => 'select2 mt-4 ms-2'
+            //    ]
+            //])
+            //->add('provider')
             
+           
             ->add('floorname', TextType::class, [
                 'required' => false,
                 'attr' => [
@@ -185,7 +197,7 @@ class MeasureType extends AbstractType
                 ],
                 
             ])
-            //->add('user')
+            
             //->add('client')
         ;
     }
