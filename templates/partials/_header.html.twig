@@ -6,24 +6,28 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav me-auto">
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administrator</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="{{ path('app_user_index')}}">Handwerker verwalten</a>
+				{% if app.user %}
+					{% if is_granted('ROLE_ADMIN') %}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administrator</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="{{ path('app_user_index')}}">Handwerker verwalten</a>
 
-						<a class="dropdown-item" href="{{ path('app_measure_index')}}">Vermessungen verwalten</a>
+								<a class="dropdown-item" href="{{ path('app_measure_index')}}">Vermessungen verwalten</a>
+							</div>
+						</li>
+					{% endif %}
+					{% if is_granted('ROLE_MEMBER') %}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Handwerker</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="{{ path('app_yourmeasure_index')}}">Vermessungen verwalten</a>
 
-					</div>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Handwerker</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="{{ path('app_measure_index')}}">Vermessungen verwalten</a>
-						<a class="dropdown-item" href="{{ path('app_client_index')}}">Kunden verwalten</a>
-
-
-					</div>
-				</li>
+								<a class="dropdown-item" href="{{ path('app_client_index')}}">Kunden verwalten</a>
+							</div>
+						</li>
+					{% endif %}
+				{% endif %}
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Besucher</a>
 					<div class="dropdown-menu">
@@ -32,10 +36,28 @@
 					</div>
 				</li>
 			</ul>
-			<form class="d-flex">
-				<input class="form-control me-sm-2" type="text" placeholder="Search">
-				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-			</form>
+			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+				{% if app.user %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path ('app_user_show',{'id':app.user.id})}}">Mon compte</a>
+						{# <a class="nav-link" href="#">Mon compte</a> #}
+
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+
+
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_register') }}">Anmelden</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_login') }}">Einloggen</a>
+					</li>
+				{% endif %}
+			</ul>
 		</div>
 	</div>
 </nav>
