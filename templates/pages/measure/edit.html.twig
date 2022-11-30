@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vermessung ändern
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Vermessung (in cm) ändern</h1>
+
+		{{ include('pages/measure/_form.html.twig', {'button_label': 'Ändern'}) }}
+
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_measure_index') }}">Zurück</a>
+
+
+		{{ include('pages/measure/_delete_form.html.twig') }}</div>
+
+{% endblock %}

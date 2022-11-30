@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
@@ -20,14 +21,22 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'E-mail',
+                'label_attr' => [
+                    'class' => 'form-label  mt-4'
+                ],
+            ])
             ->add('lastname', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'minlenght' => '2',
                     'maxlenght' => '190',
                 ],
-                'label' => 'Nom',
+                'label' => 'Name',
                 'label_attr' => [
                     'class' => 'form-label  mt-4'
                 ],
@@ -39,7 +48,7 @@ class RegistrationFormType extends AbstractType
                     'minlenght' => '2',
                     'maxlenght' => '190',
                 ],
-                'label' => 'Nom',
+                'label' => 'Vorname',
                 'label_attr' => [
                     'class' => 'form-label  mt-4'
                 ],
@@ -47,7 +56,8 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('picture', FileType::class, [
                 'mapped' => false,
-                'label' => 'Merci de mettre une photo en jpeg ou png',
+                'required' => false,
+                'label' => 'Bitte laden Sie ein Foto im JPEG- oder PNG-Format hoch.',
                      'constraints' => [
                     new File([
                         'maxSize' => '2M',
@@ -55,7 +65,7 @@ class RegistrationFormType extends AbstractType
                             'image/jpeg',
                             'image/png',
                         ],
-                        'mimeTypesMessage' => 'Merci de télécharger une image en jpeg ou png.',
+                        'mimeTypesMessage' => 'Bitte laden Sie ein Foto im JPEG- oder PNG-Format hoch.',
                     ])
                 ],
                 
@@ -66,7 +76,7 @@ class RegistrationFormType extends AbstractType
                     'minlenght' => '2',
                     'maxlenght' => '190',
                 ],
-                'label' => 'Nom',
+                'label' => 'Geselschaft',
                 'label_attr' => [
                     'class' => 'form-label  mt-4'
                 ],

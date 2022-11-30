@@ -41,6 +41,12 @@ class Measure
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Client $client = null;
 
+    #[ORM\Column(length: 190, nullable: true)]
+    private ?string $floorname = null;
+
+    #[ORM\Column(length: 190, nullable: true)]
+    private ?string $floornr = null;
+
     /**
  	*This constructor is for the date
  	*/
@@ -160,6 +166,30 @@ class Measure
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getFloorname(): ?string
+    {
+        return $this->floorname;
+    }
+
+    public function setFloorname(?string $floorname): self
+    {
+        $this->floorname = $floorname;
+
+        return $this;
+    }
+
+    public function getFloornr(): ?string
+    {
+        return $this->floornr;
+    }
+
+    public function setFloornr(?string $floornr): self
+    {
+        $this->floornr = $floornr;
 
         return $this;
     }

@@ -52,6 +52,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Measure::class)]
     private Collection $measures;
 
+    public function __toString()
+     {
+       return $this->password;
+     }
+
 
     /**
  	*This constructor is for the date

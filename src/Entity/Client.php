@@ -44,6 +44,11 @@ class Client
     #[ORM\Column(length: 190, nullable: true)]
     private ?string $phone = null;
 
+    public function __toString()
+     {
+       return $this->lastname;
+     }
+
     /**
  	*This constructor is for the date
  	*/
