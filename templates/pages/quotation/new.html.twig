@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Neuer Preisangebot
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>neuen Preisangebot erstellen</h1>
+
+		{{ include('pages/quotation/_form.html.twig') }}
+
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_quotation_index') }}">Zurück</a>
+
+	</div>
+{% endblock %}

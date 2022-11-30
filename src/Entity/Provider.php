@@ -46,6 +46,11 @@ class Provider
     #[ORM\OneToMany(mappedBy: 'provider', targetEntity: Quotation::class)]
     private Collection $quotations;
 
+    public function __toString()
+     {
+       return $this->company;
+     }
+
     public function __construct()
     {
         $this->quotations = new ArrayCollection();
