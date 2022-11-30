@@ -19,7 +19,14 @@
 				</tr>
 				<tr>
 					<th>Bild</th>
-					<td>{{ measure.picture }}</td>
+					<td>
+						{% if measure.picture is defined %}
+							<img src="{{ asset('uploads/') }}{{ measure.picture }}" alt="{{ measure.title }}" style="max-width: 7rem; height: auto; border-radius: 50%;">
+						{% else %}
+							<p>Kein Bild</p>
+						{% endif %}
+					</td>
+
 				</tr>
 				<tr>
 					<th>Ort</th>

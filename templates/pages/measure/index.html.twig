@@ -29,7 +29,7 @@
 				{% for measure in measures %}
 					<tr>
 						<td>{{ measure.title }}</td>
-						<td>{{ measure.description }}</td>
+						<td>{{ measure.description | u.truncate(10) }}...</td>
 						<td>{{ measure.place }}</td>
 						<td>{{ measure.width /100 }}
 							m</td>
