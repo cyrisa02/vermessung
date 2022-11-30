@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Measure;
 use App\Form\MeasureType;
 use App\Service\FileUploader;
 use App\Repository\MeasureRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,9 +25,14 @@ class MeasureController extends AbstractController
     }
 
     #[Route('/neu', name: 'app_measure_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, MeasureRepository $measureRepository, FileUploader $fileUploader): Response
+    public function new(Request $request, MeasureRepository $measureRepository, FileUploader $fileUploader, EntityManagerInterface $entityManager,): Response
     {
+
+        /** @var User $user */
+        $user = $this->getUser();
+
         $measure = new Measure();
+        $measure->setUser($user);
         $form = $this->createForm(MeasureType::class, $measure);
         $form->handleRequest($request);
 
@@ -36,7 +43,12 @@ class MeasureController extends AbstractController
             $imageFileName = $fileUploader->upload($imageFile);
             $measure->setPicture($imageFileName);
         }
-            $measureRepository->save($measure, true);
+//Important pour la relation OneToOne - Héritage
+            $entityManager->persist($user);
+            $entityManager->persist($measure);
+            $entityManager->flush();
+
+            //$measureRepository->save($measure, true);
             $this->addFlash('success', ' Die Änderung wurde erfolgreich abgeschlossen');
             return $this->redirectToRoute('app_measure_index', [], Response::HTTP_SEE_OTHER);
         }
