@@ -20,7 +20,15 @@ class Quotation
     private ?bool $isSend = null;
 
     #[ORM\Column(length: 190, nullable: true)]
-    private ?string $deadline = null;    
+    private ?string $deadline = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Measure $measure = null;  
+    
+    public function __toString()
+     {
+       return $this->deadline;
+     }
 
     public function getId(): ?int
     {
@@ -49,6 +57,18 @@ class Quotation
     public function setDeadline(?string $deadline): self
     {
         $this->deadline = $deadline;
+
+        return $this;
+    }
+
+    public function getMeasure(): ?Measure
+    {
+        return $this->measure;
+    }
+
+    public function setMeasure(?Measure $measure): self
+    {
+        $this->measure = $measure;
 
         return $this;
     }
