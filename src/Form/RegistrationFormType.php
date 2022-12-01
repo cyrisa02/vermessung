@@ -56,6 +56,9 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('picture', FileType::class, [
                 'mapped' => false,
+                'label_attr' => [
+                    'class' => 'form-label  mt-4'
+                ],
                 'required' => false,
                 'label' => 'Bitte laden Sie ein Foto im JPEG- oder PNG-Format hoch.',
                      'constraints' => [
@@ -83,16 +86,30 @@ class RegistrationFormType extends AbstractType
                 
             ])
             ->add('agreeTerms', CheckboxType::class, [
+                'attr' => [
+                    'class' => 'form-check-input mt-4 ms-4',
+                ],
                 'mapped' => false,
+                'label_attr' => [
+                    'class' => 'form-check-label mt-4'
+                ],
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Sie sollten unseren Bedingungen zustimmen.',
                     ]),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlenght' => '2',
+                    'maxlenght' => '190',
+                ],
+                'label_attr' => [
+                    'class' => 'form-label  mt-4'
+                ],
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [

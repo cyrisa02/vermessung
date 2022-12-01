@@ -4,15 +4,26 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Anmeldung</h1>
+	<div class="container mt-4">
+		<h1>Anmeldung</h1>
 
-	{{ form_start(registrationForm) }}
-	{{ form_row(registrationForm.email) }}
-	{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+		{{ form_start(registrationForm) }}
+		{{ form_row(registrationForm.lastname) }}
+		{{ form_row(registrationForm.firstname) }}
+		{{ form_row(registrationForm.picture) }}
+		{{ form_row(registrationForm.company) }}
+		{{ form_row(registrationForm.email) }}
+		{{ form_row(registrationForm.plainPassword, {
+            label: 'Passwort'
         }) }}
-	{{ form_row(registrationForm.agreeTerms) }}
+		{{ form_row(registrationForm.agreeTerms, {
+label: 'Sie sollten unseren Bedingungen zustimmen.'
 
-	<button type="submit" class="btn">Anmelden</button>
-	{{ form_end(registrationForm) }}
+        }) }}
+
+
+		<button type="submit" class="btn btn-primary btn-lg mt-4">Anmelden</button>
+
+		{{ form_end(registrationForm) }}</div>
+
 {% endblock %}
