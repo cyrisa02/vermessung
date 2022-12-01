@@ -40,6 +40,19 @@ class UserController extends AbstractController
         ]);
     }
 
+   
+    /**
+     * This method allows to dysplay the profile for the logged craftsman
+     */
+
+    #[Route('/{id}', name: 'app_usercraf_show', methods: ['GET'])]
+    public function showcraft(User $user): Response
+    {
+        return $this->render('pages/user/showcraft.html.twig', [
+            'user' => $user,
+        ]);
+    }
+    
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
@@ -47,7 +60,6 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
-
     #[Route('/{id}/andern', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
