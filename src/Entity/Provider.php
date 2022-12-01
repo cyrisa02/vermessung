@@ -43,9 +43,10 @@ class Provider
     #[ORM\Column(length: 190, nullable: true)]
     private ?string $phone = null;
 
-    #[ORM\OneToMany(mappedBy: 'provider', targetEntity: Quotation::class)]
-    private Collection $quotations;
+    #[ORM\OneToMany(mappedBy: 'providers', targetEntity: Measure::class)]
+    private Collection $measures;
 
+    
     public function __toString()
      {
        return $this->company;
@@ -53,7 +54,7 @@ class Provider
 
     public function __construct()
     {
-        $this->quotations = new ArrayCollection();
+        $this->measures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -170,32 +171,34 @@ class Provider
     }
 
     /**
-     * @return Collection<int, Quotation>
+     * @return Collection<int, Measure>
      */
-    public function getQuotations(): Collection
+    public function getMeasures(): Collection
     {
-        return $this->quotations;
+        return $this->measures;
     }
 
-    public function addQuotation(Quotation $quotation): self
+    public function addMeasure(Measure $measure): self
     {
-        if (!$this->quotations->contains($quotation)) {
-            $this->quotations->add($quotation);
-            $quotation->setProvider($this);
+        if (!$this->measures->contains($measure)) {
+            $this->measures->add($measure);
+            $measure->setProviders($this);
         }
 
         return $this;
     }
 
-    public function removeQuotation(Quotation $quotation): self
+    public function removeMeasure(Measure $measure): self
     {
-        if ($this->quotations->removeElement($quotation)) {
+        if ($this->measures->removeElement($measure)) {
             // set the owning side to null (unless already changed)
-            if ($quotation->getProvider() === $this) {
-                $quotation->setProvider(null);
+            if ($measure->getProviders() === $this) {
+                $measure->setProviders(null);
             }
         }
 
         return $this;
     }
+
+    
 }

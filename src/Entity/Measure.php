@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MeasureRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -63,13 +65,29 @@ class Measure
     #[ORM\Column(length: 190, nullable: true)]
     private ?string $phone = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Quotation $quotation = null;
+
+    #[ORM\ManyToOne(inversedBy: 'measures')]
+    private ?Provider $providers = null;
+
+    
+
+    
+    public function __toString()
+     {
+       return $this->title;
+     }
+
+
     /**
  	*This constructor is for the date
  	*/
  	
  	public function __construct()
     {
-        $this->created_at = new \DateTimeImmutable();      
+        $this->created_at = new \DateTimeImmutable();
+           
         
     }
 
@@ -270,4 +288,32 @@ class Measure
 
         return $this;
     }
+
+    public function getQuotation(): ?Quotation
+    {
+        return $this->quotation;
+    }
+
+    public function setQuotation(?Quotation $quotation): self
+    {
+        $this->quotation = $quotation;
+
+        return $this;
+    }
+
+    public function getProviders(): ?Provider
+    {
+        return $this->providers;
+    }
+
+    public function setProviders(?Provider $providers): self
+    {
+        $this->providers = $providers;
+
+        return $this;
+    }
+
+    
+
+    
 }

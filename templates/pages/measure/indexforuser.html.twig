@@ -22,9 +22,11 @@
 						<th>Breite (m)</th>
 						<th>Länge (m)</th>
 						<th>Erstellung</th>
+						<th>Lieferant</th>
 						<th>Laminat</th>
 						<th>ArtikelNr</th>
 						<th>Menge (m²)</th>
+						<th>Sendung</th>
 						<th>Aktion</th>
 					</tr>
 				</thead>
@@ -40,10 +42,16 @@
 							<td>{{ measure.length /100 }}
 								m</td>
 							<td>{{ measure.createdAt ? measure.createdAt|date('d-m-Y') : '' }}</td>
+							<td>{{ measure.providers }}</td>
 							<td>{{ measure.floorname }}</td>
 							<td>{{ measure.floornr }}</td>
 							<td>{{ (measure.width * measure.length *1.2 /10000) | round }}
 								m²</td>
+							<td>
+								<a href="{{ path('app_quotation_edit', {'id': measure.quotation.id} ) }}">Senden</a>
+
+								{{ measure.quotation.isSend ? '/ gesendet' : ' / Nein' }}</td>
+
 
 							<td>
 								<a class=' mt-4' href="{{ path('app_measure_show', {'id': measure.id}) }}">

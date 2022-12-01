@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Measure;
+use App\Entity\Quotation;
 use App\Form\MeasureType;
 use App\Service\FileUploader;
 use App\Repository\MeasureRepository;
@@ -38,19 +39,31 @@ class MeasureController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            // incrémentation de sa clé primaire du partenaire
+            $quotation= new Quotation();
+
+            // Coàntrat est un champ texte à remplir gràace au formulaire
+            $quotation->setIsSend(0)
+                        ->setDeadline('Geben Sie ein Liefertermin, bitte.');
+            // à 0 parce que je veux qu'il soit à false donc 0
+            //        
+            //vient chercher la clé étrangère  ne pas oublier de persister       
+            $measure->setQuotation($quotation);   
+
             $imageFile = $form->get('picture')->getData();
             if ($imageFile) {
             $imageFileName = $fileUploader->upload($imageFile);
             $measure->setPicture($imageFileName);
         }
-//Important pour la relation OneToOne - Héritage
+            //Important pour la relation OneToOne - Héritage
             $entityManager->persist($user);
+            $entityManager->persist($quotation);
             $entityManager->persist($measure);
             $entityManager->flush();
 
             //$measureRepository->save($measure, true);
             $this->addFlash('success', ' Die Änderung wurde erfolgreich abgeschlossen');
-            return $this->redirectToRoute('app_measure_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_yourmeasure_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pages/measure/new.html.twig', [
@@ -81,7 +94,7 @@ class MeasureController extends AbstractController
         }
             $measureRepository->save($measure, true);
             $this->addFlash('success', ' Die Änderung wurde erfolgreich abgeschlossen');
-            return $this->redirectToRoute('app_measure_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_yourmeasure_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pages/measure/edit.html.twig', [

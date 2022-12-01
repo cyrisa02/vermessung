@@ -14,31 +14,20 @@ class Quotation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $deadline = null;
+    
 
     #[ORM\Column(nullable: true)]
     private ?bool $isSend = null;
 
-    #[ORM\ManyToOne(inversedBy: 'quotations')]
-    private ?Provider $provider = null;
+    #[ORM\Column(length: 190, nullable: true)]
+    private ?string $deadline = null;    
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDeadline(): ?\DateTimeInterface
-    {
-        return $this->deadline;
-    }
-
-    public function setDeadline(?\DateTimeInterface $deadline): self
-    {
-        $this->deadline = $deadline;
-
-        return $this;
-    }
+    
 
     public function isIsSend(): ?bool
     {
@@ -52,15 +41,19 @@ class Quotation
         return $this;
     }
 
-    public function getProvider(): ?Provider
+    public function getDeadline(): ?string
     {
-        return $this->provider;
+        return $this->deadline;
     }
 
-    public function setProvider(?Provider $provider): self
+    public function setDeadline(?string $deadline): self
     {
-        $this->provider = $provider;
+        $this->deadline = $deadline;
 
         return $this;
     }
+
+   
+
+    
 }
