@@ -4,11 +4,12 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Service\FileUploader;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/benutzer')]
 class UserController extends AbstractController
@@ -39,19 +40,6 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
     }
-
-   
-    /**
-     * This method allows to dysplay the profile for the logged craftsman
-     */
-
-    #[Route('/{id}', name: 'app_usercraf_show', methods: ['GET'])]
-    public function showcraft(User $user): Response
-    {
-        return $this->render('pages/user/showcraft.html.twig', [
-            'user' => $user,
-        ]);
-    }
     
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
@@ -61,12 +49,18 @@ class UserController extends AbstractController
         ]);
     }
     #[Route('/{id}/andern', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, UserRepository $userRepository): Response
+    public function edit(Request $request, User $user, UserRepository $userRepository, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('picture')->getData();
+            if ($imageFile) {
+            $imageFileName = $fileUploader->upload($imageFile);
+            $user->setPicture($imageFileName);
+        }
+            
             $userRepository->save($user, true);
             $this->addFlash('success', ' Die Änderung wurde erfolgreich abgeschlossen');
 
