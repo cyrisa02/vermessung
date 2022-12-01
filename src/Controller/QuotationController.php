@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Quotation;
 use App\Form\QuotationType;
-use App\Repository\QuotationRepository;
 use App\Service\MailService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\QuotationRepository;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/preisangebot')]
 class QuotationController extends AbstractController
@@ -53,15 +55,26 @@ class QuotationController extends AbstractController
     }
 
     #[Route('/{id}/senden', name: 'app_quotation_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Quotation $quotation, QuotationRepository $quotationRepository): Response
+    public function edit(Request $request, Quotation $quotation, QuotationRepository $quotationRepository, MailerInterface $mailer ): Response
     {
         $form = $this->createForm(QuotationType::class, $quotation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $quotationRepository->save($quotation, true);
-            $this->addFlash('success', 'Ihre E-Mail wurde an dem Lieferant gesendet.');
+            
+            $email = (new TemplatedEmail())
+            ->from('cyril.gourdon.02@gmail.com')
+            //->to('cyrisa02.test@gmail.com')
+            ->to($quotation->getMeasure()->getProviders()->getEmail())
+            ->subject('Preisangebot')
+            ->htmlTemplate('emails/answer.html.twig')
+            ->context([
+            'quotation'=>$quotation
+            ]);
+            $mailer->send($email);
 
+            $this->addFlash('success', 'Ihre E-Mail wurde an dem Lieferant gesendet.');
             return $this->redirectToRoute('app_yourmeasure_index', [], Response::HTTP_SEE_OTHER);
         }
 
