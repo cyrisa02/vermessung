@@ -4,30 +4,63 @@
 		<meta charset="UTF-8">
 	</head>
 	<body>
-
-		<h1>
-			Saison
-			{{ "now"|date("Y") }}
-			/
-			{{ "now"|date("Y") +1  }}
-
-
-		</h1>
-		<h2>
-			Association Sport Détente et Culture</h2>
+		<h2>{{ quotation.measure.providers.company }}</h2>
+		<h3>Herrn
+			{{ quotation.measure.providers.lastname }}</h3>
 		<h3>
-			{{ quotation.id }}
-			nous a écrit un message.
+			{{ quotation.measure.providers.address }}</h3>
+		<h3>
+			{{ quotation.measure.providers.zipcode }}
+			{{ quotation.measure.providers.city }}</h3>
+
+		<h3>E-mail:
+			{{ quotation.measure.providers.email }}
 		</h3>
+		<br>
+		<br>
+		<hr>
+		<h3>Angebots-Nr:
+			{{quotation.id}}</h3>
+		<h3>Absender:
+			{{ quotation.measure.user.company }}</h3>
+		<h4>Kontakt: Herr
+			{{ quotation.measure.user.lastname }}</h4>
+		<h4>E-mail:
+			{{ quotation.measure.user.email }}</h4>
+		<h4>Telefon:
+			{{ quotation.measure.user.phone }}
+		</h4>
+		<br>
+		<br>
+		<h2>Angebot</h2>
+		<p>Sehr geerter Herr
+			{{ quotation.measure.providers.lastname }},</p>
+		<p>Bitte senden Sie uns ein unverbindliches Angebot zu,</p>
+		<p>- Benennung:
+			{{ quotation.measure.floorname }}</p>
+		<p>- ArtikelNr:{{ quotation.measure.floornr }}</p>
+		<p>- Menge:
+			{{ (quotation.measure.width * quotation.measure.length *1.2 /10000) | round }}
+			m²</p>
 		<h3>
-			Son adresse mail:
-			{{ quotation.id }}</h3>
-
-		<p>
-			Son message :
-			{{ quotation.id }}</p>
-
-
-		Rédigé le :
-		{{ "now"|date("d/m/Y") }}</body>
-</html></p></body></html>
+			Lieferermin:
+			{{ quotation.deadline }}
+		</h3>
+		<h2>Lieferadresse :</h2>
+		<p>{{ quotation.measure.civility }}
+			{{ quotation.measure.lastname }}</p>
+		<p>{{ quotation.measure.address }}</p>
+		<p>{{ quotation.measure.zipcode }}
+			{{ quotation.measure.place }}</p>
+		<br>
+		<br>
+		<h3>Mit freundlichen Grüssen</h3>
+		<h4>{{ quotation.measure.user.firstname }}
+			{{ quotation.measure.user.lastname }}</h4>
+		<p>Telefon:
+			{{ quotation.measure.user.phone }}
+		</p>
+		<p>Angebotdatum:
+			{{ "now"|date("d/m/Y") }}</p>
+	</body>
+</html>

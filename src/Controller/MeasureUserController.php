@@ -19,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/personal_vermessung')]
 class MeasureUserController extends AbstractController
 {
-    #[Route('/', name: 'app_yourmeasure_index', methods: ['GET'])]
+    #[Route('/desktop', name: 'app_yourmeasure_index', methods: ['GET'])]
     public function index(MeasureRepository $measureRepository): Response
     {
         /** @var User $user */
@@ -31,5 +31,16 @@ class MeasureUserController extends AbstractController
         ]);
     }
 
+    #[Route('/', name: 'app_yourmeasuremob_index', methods: ['GET'])]
+    public function indexmob(MeasureRepository $measureRepository): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+        
+
+        return $this->render('pages/measure/indexforusermobile.html.twig', [
+            'measures' => $measureRepository->findByUser($user),
+        ]);
+    }
     
 }

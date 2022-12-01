@@ -13,6 +13,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/lieferant')]
 class ProviderController extends AbstractController
 {
+    #[Route('/', name: 'app_providermob_index', methods: ['GET'])]
+    public function indexmob(ProviderRepository $providerRepository): Response
+    {
+        return $this->render('pages/provider/indexmobile.html.twig', [
+            'providers' => $providerRepository->findAll(),
+        ]);
+    }
+
     #[Route('/', name: 'app_provider_index', methods: ['GET'])]
     public function index(ProviderRepository $providerRepository): Response
     {
@@ -32,7 +40,7 @@ class ProviderController extends AbstractController
             $providerRepository->save($provider, true);
             $this->addFlash('success', 'Die Änderung wurde erfolgreich abgeschlossen');
 
-            return $this->redirectToRoute('app_provider_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_providermob_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pages/provider/new.html.twig', [
@@ -58,7 +66,7 @@ class ProviderController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $providerRepository->save($provider, true);
             $this->addFlash('success', 'Die Änderung wurde erfolgreich abgeschlossen');
-            return $this->redirectToRoute('app_provider_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_providermob_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pages/provider/edit.html.twig', [

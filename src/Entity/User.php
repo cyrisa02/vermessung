@@ -52,6 +52,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Measure::class)]
     private Collection $measures;
 
+    #[ORM\Column(length: 190, nullable: true)]
+    private ?string $phone = null;
+
     public function __toString()
      {
        return $this->password;
@@ -237,6 +240,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $measure->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }

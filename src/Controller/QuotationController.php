@@ -75,7 +75,7 @@ class QuotationController extends AbstractController
             $mailer->send($email);
 
             $this->addFlash('success', 'Ihre E-Mail wurde an dem Lieferant gesendet.');
-            return $this->redirectToRoute('app_yourmeasure_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_yourmeasuremob_index', [], Response::HTTP_SEE_OTHER);
         }
 
         

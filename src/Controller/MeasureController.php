@@ -63,7 +63,7 @@ class MeasureController extends AbstractController
 
             //$measureRepository->save($measure, true);
             $this->addFlash('success', ' Die Änderung wurde erfolgreich abgeschlossen');
-            return $this->redirectToRoute('app_yourmeasure_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_yourmeasuremob_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pages/measure/new.html.twig', [
@@ -94,7 +94,7 @@ class MeasureController extends AbstractController
         }
             $measureRepository->save($measure, true);
             $this->addFlash('success', ' Die Änderung wurde erfolgreich abgeschlossen');
-            return $this->redirectToRoute('app_yourmeasure_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_yourmeasuremob_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pages/measure/edit.html.twig', [
@@ -110,6 +110,6 @@ class MeasureController extends AbstractController
             $measureRepository->remove($measure, true);
         }
 
-        return $this->redirectToRoute('app_measure_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_yourmeasuremob_index', [], Response::HTTP_SEE_OTHER);
     }
 }
