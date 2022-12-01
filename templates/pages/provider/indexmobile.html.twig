@@ -4,7 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	{% if is_granted('ROLE_MEMBER')  %}
+	{% if is_granted('ROLE_MEMBER') and app.user.isVerified == true   %}
+
 
 		<div class="container mt-4">
 			<h1>Lieferant Liste</h1>
@@ -66,6 +67,13 @@
 
 			{% endfor %}
 		</div>
+	{% else %}
+		<div class="mt-4 container">
+			<p>Bitte warten Sie auf Ihre Bestätigung.
+			</p>
+
+		</div>
+
 	{% endif %}
 
 

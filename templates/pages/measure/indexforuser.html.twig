@@ -5,7 +5,8 @@
 
 {% block body %}
 	<div class="container mt-4">
-		{% if is_granted('ROLE_MEMBER')  %}
+		{% if is_granted('ROLE_MEMBER') and app.user.isVerified == true %}
+
 
 			<h1>Vermessung Liste</h1>
 			<p>Achtung: die Mengen werden mit einem Sicherheitsfaktor von 20 % berechnet.</p>
@@ -80,6 +81,13 @@
 			</table>
 
 			<a href="{{ path('app_measure_new') }}">Vermessung erstellen</a>
+		{% else %}
+			<div class="mt-4 container">
+				<p>Bitte warten Sie auf Ihre Bestätigung.
+				</p>
+
+			</div>
+
 		{% endif %}
 	</div>
 

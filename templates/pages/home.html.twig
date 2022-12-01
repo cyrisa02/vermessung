@@ -4,11 +4,14 @@
 {% endblock %}
 
 {% block body %}
+
+
 	{% if app.user %}
-		{% if is_granted('ROLE_MEMBER') %}
-
+		{% if (is_granted('ROLE_ADMIN') and app.user.isVerified == true) %}
+			<a class="btn btn-primary btn-lg mt-4" href="{{ path('app_user_index')}}">Handwerker verwalten</a>
+		{% endif %}
+		{% if (is_granted('ROLE_MEMBER') and app.user.isVerified == true)  %}
 			<div class="container mt-4 text-center">
-
 				<a class="btn btn-primary mt-4" href="{{ path('app_yourmeasuremob_index') }}">
 					<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 					<svg width="150" height="150" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,8 +109,12 @@
 
 
 			</div>
+		{% else %}
+			<div class="mt-4 container">
+				<p>Bitte warten Sie auf Ihre Bestätigung.
+				</p>
 
-
+			</div>
 		{% endif %}
 	{% endif %}
 

@@ -5,7 +5,9 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -45,15 +47,19 @@ class UserType extends AbstractType
                 ],
                 
             ])
-            ->add('picture', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                    'minlenght' => '2',
-                    'maxlenght' => '190',
-                ],
-                'label' => 'Bild',
-                'label_attr' => [
-                    'class' => 'form-label  mt-4'
+            ->add('picture', FileType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Bitte laden Sie ein Foto im JPEG- oder PNG-Format hoch.',
+                     'constraints' => [
+                    new File([
+                        'maxSize' => '2M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Bitte laden Sie ein Foto im JPEG- oder PNG-Format hoch.',
+                    ])
                 ],
                 
             ])
