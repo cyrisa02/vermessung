@@ -44,7 +44,8 @@ class MeasureController extends AbstractController
 
             // Coàntrat est un champ texte à remplir gràace au formulaire
             $quotation->setIsSend(0)
-                        ->setDeadline('Geben Sie ein Liefertermin, bitte.');
+                        ->setDeadline('Geben Sie ein Liefertermin, bitte.')
+                        ->setMeasure($measure);
             // à 0 parce que je veux qu'il soit à false donc 0
             //        
             //vient chercher la clé étrangère  ne pas oublier de persister       

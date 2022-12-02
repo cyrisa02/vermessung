@@ -10,12 +10,14 @@
 			<h2>Baustelle</h2>
 			<a class="btn btn-primary mt-4" href="{{ path('app_measure_new') }}">Vermessung erstellen</a>
 
+			<a class="btn btn-secondary mt-4 ms-4" href="{{ path('home.index') }}">Zurück</a>
 
 			<div class="row mt-4">
 				{% for measure in measures |reverse %}
 					<div class="col-md-4">
 						<div class="card mt-4">
-							<img src="{{ asset('uploads/') }}{{ measure.picture }}" alt="{{ measure.title }} ">
+							<img src="{{ asset('uploads/') }}{{ measure.picture }}" alt="{{ measure.title }} " style="max-width: 10rem;">
+
 							<div class="card-body">
 								<h5 class="card-title">{{measure.title}}</h5>
 								<p class="card-text">Beschreibung:

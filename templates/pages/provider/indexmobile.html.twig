@@ -9,7 +9,9 @@
 
 		<div class="container mt-4">
 			<h1>Lieferant Liste</h1>
-			<a href="{{ path('app_provider_new') }}">Lieferant erstellen</a>
+			<a class="btn btn-primary  mt-4" href="{{ path('app_provider_new') }}">Lieferant erstellen</a>
+
+			<a class="btn btn-secondary  mt-4 ms-4" href="{{ path('home.index') }}">Zurück</a>
 
 			<div class="row mt-4">
 				{% for provider in providers |reverse %}
