@@ -35,10 +35,16 @@
 					{% endif %}
 				{% endif %}
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Besucher</a>
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Passwort</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Vorstellung</a>
-						<a class="dropdown-item" href="#">Raum vermessen</a>
+						<a class="dropdown-item" href="#">Handwerker frei --- email: thierry88@picard.fr // passwort: azerty
+						</a>
+						<a class="dropdown-item" href="#">Handwerker gesperrt --- email: paul.ribeiro@live.com  // passwort: azerty
+						</a>
+						<a class="dropdown-item" href="#">Admin: cyrisa02.test@gmail.com          passwort: admin</a>
+
+						<a class="dropdown-item" href="#">Video auf Youtube</a>
+
 					</div>
 				</li>
 			</ul>
@@ -46,9 +52,6 @@
 				{% if app.user %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path ('app_usercraf_show',{'id':app.user.id})}}">Benutzer</a>
-
-						{# <a class="nav-link" href="#">Mon compte</a> #}
-
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_logout') }}">Ausloggen</a>

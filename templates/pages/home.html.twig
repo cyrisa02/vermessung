@@ -122,16 +122,104 @@
 
 		<div class="jumbotron mt-4">
 			<h1 class="display-4">Willkommen zu Spacer Calculator!</h1>
-
-			<p class="lead">Spacer Calculator ist das ideale Werkzeug für Handwerker: gespeicherte Vermessung von Räumen- Baustellen verwalten - Kunden und Lieferanten verwalten. Automatischer Versand Ihrer Preisangebote per E-Mail. Alles auf Ihrem Handy!</p>
-
-
+			<p class="lead">Spacer Calculator ist das ideale Werkzeug für Handwerker: gespeicherte Vermessung von Räumen abrufen- Baustellen verwalten - Kunden und Lieferanten verwalten. Automatischer Versand Ihrer Preisangebote per E-Mail. Alles auf Ihrem Handy!</p>
 			<hr class="my-4">
 				<p>Ziel ist die Entwicklung einer mobilen Augmented Reality Lösung für die Vermessung von Räumen. Hierbei sollen sowohl Längen und Breiten ermittelt, als auch die Fläche eines Raumes vermessen werden können. Der Kundennutzen besteht darin, dass er dann beispielsweise die passende Menge an Laminat einkaufen kann.</p>
-
-				<a class="btn btn-primary btn-lg" href="{{ path('app_login') }}" role="button">Einloggen</a>
+				<div class="text-center mt-4">
+					<a class="btn btn-primary btn-lg" href="{{ path('app_login') }}" role="button">Einloggen</a>
+				</div>
 			</div>
 			<hr class="my-4">
 
-			{% endif %}
-		{% endblock %}
+				<div class="jumbotron mt-4">
+					<h1 class="display-4">Vermessung von Räumen</h1>
+
+					<div class="container mt-4">
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3">
+								<img src="{{ asset('assets/images/2menu.png')}}" alt="menu" style="max-width: 20rem;"></div>
+								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3">
+									<img src="{{ asset('assets/images/3Baustelle.png')}}" alt="baustelle" style="max-width: 20rem;"></div>
+									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3">
+										<img src="{{ asset('assets/images/4vermessung.png')}}" alt="vermessung" style="max-width: 20rem;"></div>
+									</div>
+								</div>
+
+
+								<p class="lead">
+									Sie können ein Foto der Baustelle speichern, die Vermessung von Räumen nehmen und der Rechner gibt Ihnen die Bestellmenge. Das ist so einfach!</p>
+
+
+								<hr class="my-4">
+									<p>Sie speichern auch: Kundendaten / Laminatbenennung / Lieferantdaten.</p>
+								</div>
+								<hr class="my-4">
+									<div class="jumbotron mt-4">
+										<h1 class="display-4">Preisangebot per Email zu Lieferant senden.</h1>
+
+										<div class="container mt-4">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3">
+													<img src="{{ asset('assets/images/3Lieferant.png')}}" alt="lieferant" style="max-width: 20rem;"></div>
+													<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3">
+														<img src="{{ asset('assets/images/5email.png')}}" alt="email" style="max-width: 20rem;"></div>
+														<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3">
+															<img src="{{ asset('assets/images/5emailsenden.png')}}" alt="email" style="max-width: 20rem;"></div>
+														</div>
+													</div>
+
+
+													<p class="lead">
+														Sie verwalten die Lieferantdaten. Sie senden ihre Preisanfrage ganz einfach automatisch per E-Mail an Ihren Lieferanten.
+
+													</p>
+													<hr class="my-4">
+														<p>Sie speichern auch Liefertermin der Baustelle.
+														</p>
+													</div>
+													<hr class="my-4">
+
+
+														<div class="jumbotron mt-4">
+															<h1 class="display-4">Empfehlung</h1>
+															<p class="lead">Spacer Calculator ist das ideale Werkzeug für Handwerker.</p>
+															<hr class="my-4"></div>
+															<div class="testi-item bg-white shadow-sm rounded p-4 mb-5">
+																<div class="testi-author-info d-flex align-items-center">
+																	<img src="{{ asset('assets/images/man.jpg')}}" class="img-thumbnail rounded-circle" alt="auteur" style="max-width: 7rem;">
+																		<div class="author ms-3">
+																			<h3 class="fs-6 mb-1">Nikolaus Müller</h3>
+																			<p class="text-muted m-0">Handwerker - Laminat-Pro GmbH</p>
+																		</div>
+																	</div>
+																	<p class="text-muted mt-3">Nikolaus nutzt die App seit zwei Jahren.</p>
+																	<p class=" mt-3">Die App hat mir das Leben erleichtert, meine Kunden sind begeistert😉👍 Tschüss</p>
+																	<div class="rating text-secondary">
+																		<i class="fas fa-star"></i>
+																		<i class="fas fa-star"></i>
+																		<i class="fas fa-star"></i>
+																		<i class="fas fa-star"></i>
+																	</div>
+																</div>
+																<hr class="my-4">
+																	<div class="testi-item bg-white shadow-sm rounded p-4 mb-5">
+																		<div class="testi-author-info d-flex align-items-center">
+																			<img src="{{ asset('assets/images/man.jpg')}}" class="img-thumbnail rounded-circle" alt="auteur" style="max-width: 7rem;">
+																				<div class="author ms-3">
+																					<h3 class="fs-6 mb-1">Rainer Weber</h3>
+																					<p class="text-muted m-0">Handwerker - Laminat-Rex GmbH</p>
+																				</div>
+																			</div>
+																			<p class="text-muted mt-3">Rainer ist immer unterwegs und nutzt die App mit seinem Handy.</p>
+																			<p class=" mt-3">Die App ist sehr praktisch, ich habe sie überall dabei👍 Danke schön Spacer Calculator</p>
+																			<div class="rating text-secondary">
+																				<i class="fas fa-star"></i>
+																				<i class="fas fa-star"></i>
+																				<i class="fas fa-star"></i>
+																				<i class="fas fa-star"></i>
+																				<i class="fas fa-star"></i>
+																			</div>
+																		</div>
+																		<hr class="my-4">
+																		{% endif %}
+																	{% endblock %}
