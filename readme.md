@@ -67,3 +67,5 @@ INSERT INTO `user` VALUES (15,'cyrisa02.test@gmail.com','[\"ROLE_ADMIN\"]','$2y$
 <p>craftsman: paul.ribeiro@live.com             password:azerty     / isVerified =false </p>
 
 ## Site How-To Videos
+
+https://www.youtube.com/watch?v=BdYDilsv_ig&list=PLQtcbnWnIXZvngebReNEwIbutHTOzA_E2
