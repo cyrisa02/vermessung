@@ -82,6 +82,6 @@ class ProviderController extends AbstractController
             $providerRepository->remove($provider, true);
         }
 
-        return $this->redirectToRoute('app_provider_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_providermob_index', [], Response::HTTP_SEE_OTHER);
     }
 }
